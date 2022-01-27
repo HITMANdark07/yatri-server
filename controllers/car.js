@@ -33,6 +33,7 @@ exports.create = (req, res) => {
 
 exports.list = (req, res) => {
     Car.find({})
+    .populate("type" ," -photo")
     .exec((err, cars) => {
         if(err || !cars){
             return res.status(400).json({
