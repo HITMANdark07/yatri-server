@@ -11,6 +11,7 @@ const imageRoutes = require("./routes/image");
 const adminRoutes = require('./routes/admin');
 const carCategoryRoutes = require("./routes/carCategory");
 const carRoutes = require("./routes/car");
+const driverRoutes = require('./routes/driver');
 
 // app
 const app = express();
@@ -20,8 +21,13 @@ const app = express();
 mongoose.connect(process.env.NODE_MONGODB_DATABASE, {
     useNewUrlParser:true,
     useUnifiedTopology:true
-}).then(()=> console.log('DATABASE connected'))
+}).then(()=> {
+    console.log('DATABASE connected');
+    // autoIncrement.initialize(conn.connection);
+    // console.log(conn.connection);
+})
 .catch((err)=> console.log("Error Connecting DATABASE",err));
+
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -33,7 +39,7 @@ app.use("/api",imageRoutes);
 app.use("/api",adminRoutes);
 app.use("/api",carCategoryRoutes);
 app.use("/api",carRoutes);
-
+app.use("/api", driverRoutes);
 
 
 
