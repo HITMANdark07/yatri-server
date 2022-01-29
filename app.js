@@ -12,6 +12,7 @@ const adminRoutes = require('./routes/admin');
 const carCategoryRoutes = require("./routes/carCategory");
 const carRoutes = require("./routes/car");
 const driverRoutes = require('./routes/driver');
+const locationRoutes = require('./routes/location');
 
 // app
 const app = express();
@@ -40,6 +41,7 @@ app.use("/api",adminRoutes);
 app.use("/api",carCategoryRoutes);
 app.use("/api",carRoutes);
 app.use("/api", driverRoutes);
+app.use("/api",locationRoutes);
 
 
 

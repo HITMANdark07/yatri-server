@@ -12,6 +12,14 @@ const driverSchema = new mongoose.Schema({
         required:true,
         maxlength:32
     },
+    location:{
+        type:Object,
+        ref:'Location',
+    },
+    status:{
+        type:Number,
+        default:1
+    },
     phone:{
         type:String,
         unique:true,

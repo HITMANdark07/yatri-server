@@ -2,7 +2,6 @@ const Driver = require('../models/driver');
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const { errorHandler } = require('../helpers/dbErrorHandler');
-const driver = require('../models/driver');
 
 exports.signUp = (req,res) => {
     const driver = new Driver(req.body);

@@ -13,6 +13,15 @@ const carSchema = mongoose.Schema({
     image:{
         type:String
     },
+    count:{
+        type:Number,
+        default:1
+    },
+    location:{
+        type:ObjectId,
+        ref:'Location',
+        required:true
+    },
     permit_validity:{
         type:Date,
     },
