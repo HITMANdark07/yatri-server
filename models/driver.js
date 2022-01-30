@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 const uuidv1 = require('uuid/v1');
-const autoIncrement = require('mongoose-auto-increment');
+// const autoIncrement = require('mongoose-auto-increment');
 
-autoIncrement.initialize(mongoose.connection);
+// autoIncrement.initialize(mongoose.connection);
 
 const driverSchema = new mongoose.Schema({
     name:{
@@ -57,7 +57,7 @@ const driverSchema = new mongoose.Schema({
 );
 
 //Autoincrement Plugin
-driverSchema.plugin(autoIncrement.plugin,'Driver');
+// driverSchema.plugin(autoIncrement.plugin,'Driver');
 
 //virtual field
 
