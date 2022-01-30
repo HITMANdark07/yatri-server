@@ -34,6 +34,7 @@ exports.create = (req, res) => {
 exports.list = (req, res) => {
     Car.find({})
     .populate("type" ," -photo")
+    .populate("location")
     .exec((err, cars) => {
         if(err || !cars){
             return res.status(400).json({

@@ -19,7 +19,9 @@ exports.signUp = (req,res) => {
 };
 
 exports.list = (req, res) => {
-    Driver.find({}).exec((err, drivers) => {
+    Driver.find({})
+    .populate('location')
+    .exec((err, drivers) => {
         if(err || !drivers){
             res.status(400).json({
                 error: errorHandler(err)

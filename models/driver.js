@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
+const ObjectId = mongoose.Schema.ObjectId;
 const uuidv1 = require('uuid/v1');
 // const autoIncrement = require('mongoose-auto-increment');
 
@@ -13,7 +14,7 @@ const driverSchema = new mongoose.Schema({
         maxlength:32
     },
     location:{
-        type:Object,
+        type:ObjectId,
         ref:'Location',
     },
     status:{

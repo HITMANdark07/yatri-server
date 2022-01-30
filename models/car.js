@@ -17,6 +17,10 @@ const carSchema = mongoose.Schema({
         type:Number,
         default:1
     },
+    tarrif:{
+        type:Number,
+        default:100
+    },
     location:{
         type:ObjectId,
         ref:'Location',
