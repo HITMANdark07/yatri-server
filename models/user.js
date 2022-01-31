@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
         trim: true,
         unique:true
     },
+    status:{
+        type:Number,
+        default:1
+    },
     phone:{
         type:String,
         trim:true,

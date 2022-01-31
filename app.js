@@ -13,6 +13,7 @@ const carCategoryRoutes = require("./routes/carCategory");
 const carRoutes = require("./routes/car");
 const driverRoutes = require('./routes/driver');
 const locationRoutes = require('./routes/location');
+const userRoutes = require('./routes/user');
 
 // app
 const app = express();
@@ -42,6 +43,7 @@ app.use("/api",carCategoryRoutes);
 app.use("/api",carRoutes);
 app.use("/api", driverRoutes);
 app.use("/api",locationRoutes);
+app.use("/api",userRoutes);
 
 
 
