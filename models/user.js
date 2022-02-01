@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
         trim:true,
         maxlength:10,
     },
+    price:{
+        type:Number,
+        default:0,
+    },
     hashed_password:{
         type:String,
         required:true,
