@@ -45,9 +45,9 @@ exports.create = (req, res) => {
                 error: 'Something Went Wrong'
             });
         }
-        const { title, seats, type,ac,luggage } = fields;
+        const { title, seats,ac,luggage } = fields;
 
-         if(!title || !seats || !type || !ac || !luggage){
+         if(!title || !seats || !ac || !luggage){
             return res.status(400).json({
                 error: 'All fields are required'
             });

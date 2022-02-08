@@ -10,6 +10,10 @@ const carSchema = mongoose.Schema({
         type:ObjectId,
         ref:"CarCategory"
     },
+    make_model:{
+        type:String,
+        required:true
+    },
     image:{
         type:String
     },
