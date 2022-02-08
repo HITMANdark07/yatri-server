@@ -17,6 +17,11 @@ const driverSchema = new mongoose.Schema({
         type:ObjectId,
         ref:'Location',
     },
+    username:{
+        type:String,
+        required:true,
+        unique:true
+    },
     status:{
         type:Number,
         default:1

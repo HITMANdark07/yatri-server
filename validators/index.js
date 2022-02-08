@@ -37,6 +37,9 @@ exports.driverSignupValidator = (req,res, next)=>{
     .matches(/\d/)
     .withMessage("password must contain a number")
     req.check('aadhar_number').notEmpty()
+    .matches(/^\d{12}$/g)
+    .isLength(12)
+    .withMessage("Aadhar must be of 12 digits")
     req.check('dl_number').notEmpty()
     req.check('location').notEmpty()
     const errors = req.validationErrors();

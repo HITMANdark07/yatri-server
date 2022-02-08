@@ -13,6 +13,10 @@ const locationSchema = mongoose.Schema({
     lng:{
         type:Number,
         required:true
+    },
+    status:{
+        type:Boolean,
+        default:true
     }
 },{ timestamps: true});
 

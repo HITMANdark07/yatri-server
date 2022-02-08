@@ -15,11 +15,6 @@ const carCategorySchema = new mongoose.Schema({
         data: Buffer,
         contentType:String
     },
-    type:{
-        type:String,
-        default:'mini',
-        enum:["mini","prime","standard"]
-    },
     ac:{
         type:Boolean,
         default:false,
