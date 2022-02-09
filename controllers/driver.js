@@ -4,6 +4,7 @@ const expressJwt = require('express-jwt');
 const { errorHandler } = require('../helpers/dbErrorHandler');
 
 exports.signUp = (req,res) => {
+    console.log(req.body);
     const driver = new Driver(req.body);
         driver.save(async(err, driver)=>{
         if (err) {
@@ -125,3 +126,7 @@ exports.driverById = (req, res, next, id) => {
         next();
     });
 };
+
+exports.read = (req,res) => {
+    return res.json(req.driver);
+}

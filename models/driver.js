@@ -30,6 +30,7 @@ const driverSchema = new mongoose.Schema({
         type:String,
         unique:true,
         trim:true,
+        minlength:10,
         maxlength:10,
     },
     hashed_password:{
@@ -39,6 +40,8 @@ const driverSchema = new mongoose.Schema({
     aadhar_number:{
         type:String,
         required:true,
+        minlength:12,
+        maxlength:12,
         unique:true
     },
     dl_number:{
