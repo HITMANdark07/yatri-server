@@ -14,6 +14,7 @@ const carRoutes = require("./routes/car");
 const driverRoutes = require('./routes/driver');
 const locationRoutes = require('./routes/location');
 const userRoutes = require('./routes/user');
+const tariffRoutes = require('./routes/tariff');
 
 // app
 const app = express();
@@ -44,7 +45,7 @@ app.use("/api",carRoutes);
 app.use("/api", driverRoutes);
 app.use("/api",locationRoutes);
 app.use("/api",userRoutes);
-
+app.use("/api",tariffRoutes);
 
 
 const port = process.env.PORT || 8000;
