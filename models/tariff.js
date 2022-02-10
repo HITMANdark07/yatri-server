@@ -15,7 +15,7 @@ const tariffSchema = mongoose.Schema({
     trip_type:{
         type:String,
         default:"LOCAL",
-        enum:["LOCAL", "OUTSTATION","AIR_TRANSPORT"]
+        enum:["LOCAL", "OUTSTATION","AIRPORT"]
     },
     sub_trip_type:{
         type:String,
