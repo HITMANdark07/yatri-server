@@ -46,6 +46,24 @@ exports.list = (req, res) => {
     });
 };
 
+exports.listwithquery = (req, res) => {
+    Tariff.find({
+        location:req.query.start,
+        trip_type:req.query.trip,
+        sub_trip_type:req.query.subtrip
+    })
+    .populate("category" ," -photo")
+    .populate("location")
+    .exec((err, tariffs) => {
+        if(err || !tariffs){
+            return res.status(400).json({
+                error: "Unabel to Fetch Tarrifs"
+            })
+        }
+        return res.json(tariffs);
+    });
+}
+
 exports.update = (req,res) => {
     Tariff.findByIdAndUpdate(
         {_id: req.tariff._id},
