@@ -24,15 +24,31 @@ const tariffSchema = mongoose.Schema({
     },
     min_fare:{
         type:Number,
+        default:0,
     },
     extra_km:{
         type:Number,
+        default:0,
+    },
+    per_km:{
+        type:Number,
+        default:0,
     },
     extra_hours:{
-        type:Number
+        type:Number,
+        default:0,
+    },
+    min_km_per_day:{
+        type:Number,
+        default:0,
     },
     driver_allowance:{
-        type:Number
+        type:Number,
+        default:0,
+    },
+    driver_allowance_day:{
+        type:Number,
+        default:0,
     },
     gst:{
         type:Number,

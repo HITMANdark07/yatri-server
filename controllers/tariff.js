@@ -33,7 +33,15 @@ exports.create = (req, res) => {
 }
 
 exports.list = (req, res) => {
-    Tariff.find({})
+    let q ={};
+    let limit = req.query.limit || 1000;
+    let skip = req.query.skip || 0;
+    if(req.query.trip || req.query.trip!=="") q['trip_type'] = req.query.trip;
+    if(req.query.start || req.query.start!=="") q['location'] = req.query.start;
+
+    Tariff.find(q)
+    .limit(limit)
+    .skip(skip)
     .populate("category" ," -photo")
     .populate("location")
     .exec((err, tariffs) => {
