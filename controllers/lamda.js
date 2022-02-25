@@ -59,6 +59,8 @@ exports.getInitialPrice = async (req, res) => {
                     response['gst']=tgst.toFixed(2);
                     response['distance'] = dt;
                     response['car'] = tariff.category.title;
+                    response['from'] = tariff.location.name;
+                    response['to'] = location.name;
                     // OUTSTAION 
                     break;
                 case "ROUND_TRIP":
@@ -73,6 +75,8 @@ exports.getInitialPrice = async (req, res) => {
                     response['gst']=tgst.toFixed(2);
                     response['distance'] = dt;
                     response['car'] = tariff.category.title;
+                    response['from'] = tariff.location.name;
+                    response['to'] = location.name;
                     // OUTSTAION 2
                     break;
                 case "CAB_FROM_AIRPORT":
