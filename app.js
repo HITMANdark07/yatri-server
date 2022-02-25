@@ -15,6 +15,7 @@ const driverRoutes = require('./routes/driver');
 const locationRoutes = require('./routes/location');
 const userRoutes = require('./routes/user');
 const tariffRoutes = require('./routes/tariff');
+const lamdaRoutes = require("./routes/lamda");
 
 // app
 const app = express();
@@ -46,7 +47,7 @@ app.use("/api", driverRoutes);
 app.use("/api",locationRoutes);
 app.use("/api",userRoutes);
 app.use("/api",tariffRoutes);
-
+app.use("/api",lamdaRoutes);
 
 const port = process.env.PORT || 8000;
 
