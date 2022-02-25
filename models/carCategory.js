@@ -22,6 +22,10 @@ const carCategorySchema = new mongoose.Schema({
     luggage:{
         type:Number,
         default:2
+    },
+    isDeleted:{
+        type:Boolean,
+        default:false
     }
 
 },{ timestamps:true});

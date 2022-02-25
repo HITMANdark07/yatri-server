@@ -23,7 +23,10 @@ exports.read = (req, res)=>{
 };
 
 exports.list = (req, res) => {
-    CarCategory.find()
+    let q = {isDeleted:false};
+    // let qry = req.query;
+    CarCategory.find(q)
+    .sort({"createdAt":-1})
     .select("-photo")
     .exec((err,carCategories) => {
         if(err || !carCategories){
@@ -131,7 +134,8 @@ exports.update = (req, res) => {
 
 exports.remove = (req,res) => {
     let category = req.carCategory;
-    category.remove((err, deletedCategory)=>{
+    category['isDeleted'] = true;
+    category.save((err, deletedCategory)=>{
         if(err){
             return res.status(400).json({
                 error: errorHandler(err)

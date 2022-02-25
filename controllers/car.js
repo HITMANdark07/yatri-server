@@ -32,7 +32,11 @@ exports.create = (req, res) => {
 }
 
 exports.list = (req, res) => {
-    Car.find({})
+    let q = {isDeleted:false};
+    let qry = req.query;
+    if(qry.location) q['location'] = qry.location;
+    Car.find(q)
+    .sort({"createdAt":-1})
     .populate("type" ," -photo")
     .populate("location")
     .exec((err, cars) => {
@@ -63,12 +67,13 @@ exports.update = (req,res) => {
 
 exports.remove = (req, res) => {
     let car = req.car;
-    car.remove((err, car) => {
-        if(err || !car){
+    car['isDeleted'] = true;
+    car.save((err, dcar) => {
+        if(err || !dcar){
             return res.status(400).json({
                 error:"Unable to delete car"
             })
         }
-        return res.json(car);
+        return res.json(dcar);
     })
 }

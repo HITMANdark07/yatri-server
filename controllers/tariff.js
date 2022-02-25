@@ -33,7 +33,7 @@ exports.create = (req, res) => {
 }
 
 exports.list = (req, res) => {
-    let q ={};
+    let q ={isDeleted:false};
     let limit = req.query.limit || 1000;
     let skip = req.query.skip || 0;
     if(req.query.trip || req.query.trip!=="") q['trip_type'] = req.query.trip;
@@ -58,7 +58,8 @@ exports.listwithquery = (req, res) => {
     Tariff.find({
         location:req.query.start,
         trip_type:req.query.trip,
-        sub_trip_type:req.query.subtrip
+        sub_trip_type:req.query.subtrip,
+        isDeleted:false
     })
     .populate("category" ," -photo")
     .populate("location")
@@ -90,7 +91,8 @@ exports.update = (req,res) => {
 
 exports.remove = (req, res) => {
     let tariff = req.tariff;
-    tariff.remove((err, tariff) => {
+    tariff['isDeleted'] = true;
+    tariff.save((err, tariff) => {
         if(err || !tariff){
             return res.status(400).json({
                 error:"Unable to delete Tariff"

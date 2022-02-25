@@ -46,7 +46,9 @@ exports.update = (req, res) =>{
 }
 
 exports.list = (req, res) => {
-    Location.find({}).exec((err, locations) => {
+    Location.find({})
+    .sort({"createdAt":-1})
+    .exec((err, locations) => {
         if(err || !locations){
             return res.status(400).json({
                 error: errorHandler(err)

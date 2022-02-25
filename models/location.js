@@ -17,7 +17,7 @@ const locationSchema = mongoose.Schema({
     status:{
         type:Boolean,
         default:true
-    }
+    },
 },{ timestamps: true});
 
 module.exports = mongoose.model('Location',locationSchema);

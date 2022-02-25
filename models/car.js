@@ -33,6 +33,10 @@ const carSchema = mongoose.Schema({
     },
     insurance_validity_to:{
         type:Date
+    },
+    isDeleted:{
+        type:Boolean,
+        default:false
     }
 
 },{ timestamps:true});

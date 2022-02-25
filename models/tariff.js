@@ -53,8 +53,11 @@ const tariffSchema = mongoose.Schema({
     gst:{
         type:Number,
         required:true
+    },
+    isDeleted:{
+        type:Boolean,
+        default:false
     }
-
 },{ timestamps:true});
 
 module.exports = mongoose.model("Tariff",tariffSchema);

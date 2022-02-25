@@ -28,7 +28,6 @@ const driverSchema = new mongoose.Schema({
     },
     phone:{
         type:String,
-        unique:true,
         trim:true,
         minlength:10,
         maxlength:10,
@@ -61,6 +60,10 @@ const driverSchema = new mongoose.Schema({
     history:{
         type:Array,
         default:[]
+    },
+    isDeleted:{
+        type:Boolean,
+        default:false
     }
 }, {timestamps:true}
 );

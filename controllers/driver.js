@@ -20,7 +20,11 @@ exports.signUp = (req,res) => {
 };
 
 exports.list = (req, res) => {
-    Driver.find({})
+    let q = {isDeleted:false};
+    let qry = req.query;
+    if(qry.location) q['location'] = qry.location;
+    Driver.find(q)
+    .sort({"createdAt":-1})
     .populate('location')
     .exec((err, drivers) => {
         if(err || !drivers){
@@ -86,7 +90,8 @@ exports.isDriver = (req, res, next) => {
 
 exports.remove = (req, res) => {
     const driver = req.driver;
-    driver.remove((err, dr) => {
+    driver['isDeleted'] = true;
+    driver.save((err, dr) => {
         if(err || !dr){
             res.status(400).json({
                 error: "Unable to Remove Driver"
