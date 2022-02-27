@@ -46,7 +46,9 @@ exports.update = (req, res) =>{
 }
 
 exports.list = (req, res) => {
-    Location.find({})
+    let q={};
+    if(req.query.status) q['status'] = req.query.status;
+    Location.find(q)
     .sort({"createdAt":-1})
     .exec((err, locations) => {
         if(err || !locations){

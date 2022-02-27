@@ -80,9 +80,21 @@ exports.getInitialPrice = async (req, res) => {
                     // OUTSTAION 2
                     break;
                 case "CAB_FROM_AIRPORT":
+                    ec+=tariff.min_fare;
+                    ec+=tariff.extra_km*20;
+                    tgst = (tariff.gst/100)*ec;
+                    response['estimated_cost']=ec;
+                    response['gst']=tgst.toFixed(2);
+                    response['car'] = tariff.category.title;
                     // AIRPORT
                     break;
                 case "CAB_TO_AIRPORT":
+                    ec+=tariff.min_fare;
+                    ec+=tariff.extra_km*20;
+                    tgst = (tariff.gst/100)*ec;
+                    response['estimated_cost']=ec;
+                    response['gst']=tgst.toFixed(2);
+                    response['car'] = tariff.category.title;
                     // AIRPORT 2
                     break;
                 default:

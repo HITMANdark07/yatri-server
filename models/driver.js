@@ -26,6 +26,10 @@ const driverSchema = new mongoose.Schema({
         type:Number,
         default:1
     },
+    onDuty:{
+        type:Boolean,
+        default:false
+    },
     phone:{
         type:String,
         trim:true,

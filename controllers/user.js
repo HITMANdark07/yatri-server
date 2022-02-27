@@ -114,14 +114,14 @@ exports.update = (req, res) => {
     )
 }
 
-// exports.isuser = (req, res, next) => {
-//     let user = req.user && req.auth && req.user._id == req.auth._id;
-//     if(!user){
-//        return res.status(403).json({ 
-//            error: 'Access denied'
-//        });
-//     }
-//     next();
-// };
+exports.isuser = (req, res, next) => {
+    let user = req.user && req.auth && req.user._id == req.auth._id;
+    if(!user){
+       return res.status(403).json({ 
+           error: 'Access denied'
+       });
+    }
+    next();
+};
 
 

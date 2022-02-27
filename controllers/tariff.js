@@ -20,8 +20,15 @@ exports.read = (req, res) => {
     return res.json(req.tariff);
 }
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     let tariff = new Tariff(req.body);
+    let {location,category,sub_trip_type } = req.body;
+    let t = await Tariff.findOne({location, category, sub_trip_type, isDeleted:false});
+    if(t){
+        return res.status(400).json({
+            error:"Tariff Already exist"
+        })
+    }
     tariff.save((err, tariff) => {
         if(err || !tariff) {
             return res.status(400).json({

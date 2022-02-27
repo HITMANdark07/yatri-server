@@ -1,34 +1,88 @@
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.ObjectId;
 
-const locationSchema = mongoose.Schema({
-    latitude:Number,
-    longitude:Number
-})
-const Location = mongoose.model("Location", locationSchema);
+
 const tripSchema = mongoose.Schema({
     car:{
         type:ObjectId,
-        require:true,
         ref:"Car"
     },
-    type:{
+    tariff:{
+        type:ObjectId,
+        required:true,
+        ref:'Tariff'
+    },
+    client_name:{
         type:String,
-        default:"OUTSTATION",
-        enum:["OUTSTATION","LOCAL","AIRPORT"]
+        required:true
+    },
+    client_email:{
+        type:String,
+        required:true
+    },
+    client_request:{
+        type:String
     },
     driver:{
         type:ObjectId,
         ref:'Driver'
     },
-    start:{...Location},
-    end:{...Location},
+    contact:{
+        type:Number,
+        required:true,
+    },
+    start:{
+        name:{
+            type:String
+        },
+        lat:{
+            type:Number
+        },
+        lng:{
+            type:Number
+        }
+    },
+    end:{
+        name:{
+            type:String
+        },
+        lat:{
+            type:Number
+        },
+        lng:{
+            type:Number
+        }
+    },
+    last_updated_loc:{
+        lat:{
+            type:Number
+        },
+        lng:{
+            type:Number
+        }
+    },
+    distance_travelled:{
+        type:Number,
+        default:0
+    },
     status:{
         type:String,
         default:"PENDING",
-        enum:["PENDING","CONFIRMED","ON-GOING", "COMPLETED"]
+        enum:["PENDING","CONFIRMED","LIVE", "COMPLETED","CANCELED"]
     },
-    user:{
+    pick_time:{
+        type:String
+    },
+    pick_date:{
+        type:Date,
+        default: new Date()
+    },
+    paymentStatus:{
+        type:String,
+        default:'UNPAID',
+        enum:['UNPAID','PARTIAL','PAID','REFUNDED']
+    },
+    booked_by:{
         type:ObjectId,
         require:true,
         ref:'User'
