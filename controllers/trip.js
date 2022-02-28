@@ -1,3 +1,4 @@
+const tariff = require("../models/tariff");
 const Trip = require("../models/trip");
 
 
@@ -45,4 +46,54 @@ exports.requestTrip = (req,res) => {
         return res.json(trip);
     })
 
+};
+
+exports.list = async(req, res) => {
+    let q = {};
+    let payload = req.query;
+    if(payload.location) {
+        q['tariff'] = {};
+        q['tariff'].location = payload.location;
+    }
+    if(payload.status) q['status'] = payload.status;
+    let trips;
+    try{
+        trips = await Trip.find(q)
+        .populate({
+            path:'tariff',
+            populate:{
+                path:'category location',
+                select:"-photo",
+            }
+        })
+        .populate("car","-image")
+        .populate("booked_by","_id name email");
+    
+    }catch(err){
+        return res.status(400).json({
+            error:"Something Went Wrong"
+        })
+    }
+    return res.json(trips);
+}
+
+exports.read =(req, res) => {
+    return res.json(req.trip);
+}
+
+
+exports.update = (req,res) => {
+    Trip.findByIdAndUpdate(
+        {_id: req.trip._id},
+        {$set : req.body},
+        {new: true},
+        (err, trip) => {
+            if(err || !trip){
+                return res.status(400).json({
+                    error: "Unable to Update Trip"
+                })
+            }
+            return res.json(trip);
+        }
+    )
 }

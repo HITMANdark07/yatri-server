@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.ObjectId;
 
+const { MongooseFindByReference } = require('mongoose-find-by-reference');
 
 const tripSchema = mongoose.Schema({
     car:{
@@ -88,5 +89,7 @@ const tripSchema = mongoose.Schema({
         ref:'User'
     }
 },{timeStamps:true});
+
+tripSchema.plugin(MongooseFindByReference);
 
 module.exports = mongoose.model("Trip", tripSchema);
