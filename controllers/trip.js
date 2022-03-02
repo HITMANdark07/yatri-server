@@ -4,9 +4,15 @@ const Trip = require("../models/trip");
 
 exports.tripById = (req, res, next, id) => {
     Trip.findOne({_id:id})
-    .populate("tariff tariff.category" ," -photo")
+    .populate({
+        path:'tariff',
+        populate:{
+            path:'category location',
+            select:"-photo",
+        }
+    })
     .populate("driver"," -hashed_password")
-    .populate("user","name email image")
+    .populate("booked_by","name email image")
     .exec((err, trip) => {
         if(err || !trip){
             return res.status(400).json({
@@ -51,6 +57,8 @@ exports.requestTrip = (req,res) => {
 exports.list = async(req, res) => {
     let q = {};
     let payload = req.query;
+    let limit = payload.limit || 50;
+    let skip = payload.skip || 0;
     if(payload.location) {
         q['tariff'] = {};
         q['tariff'].location = payload.location;
@@ -67,7 +75,10 @@ exports.list = async(req, res) => {
             }
         })
         .populate("car","-image")
-        .populate("booked_by","_id name email");
+        .populate("booked_by","_id name email")
+        .limit(limit)
+        .skip(skip)
+        .sort({"pick_date":-1});
     
     }catch(err){
         return res.status(400).json({

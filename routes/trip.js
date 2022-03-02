@@ -8,7 +8,7 @@ const {requestTrip, list, update, tripById, read} = require("../controllers/trip
 router.post("/create/trip/:userId", requireSigninUser,isuser, requestTrip);
 router.get("/trips/list", list);
 router.get("/trip/details/:tripId",read);
-router.put("/tariff/update/:adminid",requireSigninAdmin, isAdmin,update );
+router.put("/trip/update/:tripId/:adminId",requireSigninAdmin, isAdmin,update );
 
 router.param("userId",userById);
 router.param("tripId", tripById);
