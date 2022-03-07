@@ -24,6 +24,10 @@ const tripSchema = mongoose.Schema({
     client_request:{
         type:String
     },
+    destination:{
+        type:ObjectId,
+        ref:'Location'
+    },
     driver:{
         type:ObjectId,
         ref:'Driver'

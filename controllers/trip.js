@@ -37,12 +37,13 @@ exports.requestTrip = (req,res) => {
         client_email:client_email,
         client_request:client_request,
         pick_time:pick_time,
+        destination:destination,
         pick_date:pick_date,
         contact:contact,
         start:start,
         booked_by:req.user._id
     });
-
+    
     trip.save((err, trip) => {
         if(err || !trip){
             return res.status(400).json({
@@ -74,6 +75,7 @@ exports.list = async(req, res) => {
                 select:"-photo",
             }
         })
+        .populate("destination")
         .populate("car","-image")
         .populate("booked_by","_id name email")
         .limit(limit)
