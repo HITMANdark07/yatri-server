@@ -23,6 +23,7 @@ exports.list = (req, res) => {
     let q = {isDeleted:false};
     let qry = req.query;
     if(qry.location) q['location'] = qry.location;
+    if(qry.status) q['status'] = qry.status;
     Driver.find(q)
     .sort({"createdAt":-1})
     .populate('location')

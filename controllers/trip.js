@@ -25,8 +25,8 @@ exports.tripById = (req, res, next, id) => {
 };
 
 exports.requestTrip = (req,res) => {
-    const {tariff,destination, client_name, client_email, client_request,start, contact, pick_time, pick_date} = req.body;
-    if(!tariff || tariff==="" || !destination || destination==="" ||!client_name || client_name==="" || !client_email || client_email==="" || !contact || contact==="" || !start   || start.name=="" || !pick_time || pick_time==="" || !pick_date || pick_date===""){
+    const {tariff,destination, client_name, client_email, client_request,start, contact, pick_time, pick_date, car_type} = req.body;
+    if(!tariff || tariff==="" || !destination || destination==="" ||!client_name || client_name==="" || !client_email || client_email==="" || !contact || contact==="" || !start   || start.name=="" || !pick_time || pick_time==="" || !pick_date || pick_date==="" || !car_type || car_type===""){
         return res.status(400).json({
             error:"All Fields are Required"
         })
@@ -39,6 +39,7 @@ exports.requestTrip = (req,res) => {
         pick_time:pick_time,
         destination:destination,
         pick_date:pick_date,
+        car_type:car_type,
         contact:contact,
         start:start,
         booked_by:req.user._id

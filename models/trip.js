@@ -13,6 +13,11 @@ const tripSchema = mongoose.Schema({
         required:true,
         ref:'Tariff'
     },
+    car_type:{
+        type:ObjectId,
+        required:true,
+        ref:'CarCategory'
+    },
     client_name:{
         type:String,
         required:true
