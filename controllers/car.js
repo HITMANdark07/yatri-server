@@ -34,6 +34,8 @@ exports.create = (req, res) => {
 exports.list = (req, res) => {
     let q = {isDeleted:false};
     let qry = req.query;
+    if(qry.booked) q['booked'] = qry.booked;
+    if(qry.type) q['type'] = qry.type;
     if(qry.location) q['location'] = qry.location;
     Car.find(q)
     .sort({"createdAt":-1})

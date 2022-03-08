@@ -22,6 +22,10 @@ const carSchema = mongoose.Schema({
         ref:'Location',
         required:true
     },
+    booked:{
+        type:Boolean,
+        default:false,
+    },
     permit_validity_from:{
         type:Date,
     },

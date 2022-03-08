@@ -11,6 +11,7 @@ exports.tripById = (req, res, next, id) => {
             select:"-photo",
         }
     })
+    .populate("car_type")
     .populate("driver"," -hashed_password")
     .populate("booked_by","name email image")
     .exec((err, trip) => {
@@ -77,6 +78,7 @@ exports.list = async(req, res) => {
             }
         })
         .populate("destination")
+        .populate("car_type")
         .populate("car","-image")
         .populate("booked_by","_id name email")
         .limit(limit)
